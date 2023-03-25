@@ -1,0 +1,4 @@
+tipousuario, username, password
+valido,tomsmith,SuperSecretPassword!
+invalido,foobar2,foobar2
+admin,foobar3,foobar3

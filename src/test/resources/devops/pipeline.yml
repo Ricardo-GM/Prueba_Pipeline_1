@@ -1,0 +1,47 @@
+stages:
+  - stage:
+    displayName: 'STAGE pruebas funcionales'
+    jobs:
+      - job:
+        displayName: 'JOB pruebas funcionales'
+        pool: # agent pool
+          vmImage: $(vmImage)
+        steps:
+          - task: Maven@3
+            displayName: 'ejecutar pruebas'
+            inputs:
+              mavenPomFile: 'pom.xml'
+              goals: 'clean verify'
+              options: '-Dwebdriver.driver=$(webDriver) -X -Denvironment=dev'
+              publishJUnitResults: false
+              testResultsFiles: '**/surefire-reports/TEST-*.xml'
+              mavenOptions: '-Xmx3072m'
+              javaHomeOption: 'JDKVersion'
+              jdkArchitectureOption: 'x64'
+              jdkVersionOption: '1.8'
+              mavenVersionOption: 'Default'
+              mavenAuthenticateFeed: false
+              effectivePomSkip: false
+              sonarQubeRunAnalysis: false
+          - task: PublishHtmlReport@1
+            inputs:
+              reportDir: '$(Build.SourcesDirectory)/target/site/serenity/index.html'
+          - task: ArchiveFiles@2
+            displayName: 'empaquetar reporte'
+            inputs:
+              rootFolderOrFile: '$(Build.SourcesDirectory)/target/site/serenity'
+              includeRootFolder: false
+              archiveType: 'zip'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/serenityresult-$(webDriver)-$(Build.BuildId).zip'
+              replaceExistingArchive: true
+
+          - publish: '$(Build.ArtifactStagingDirectory)/serenityresult-$(webDriver)-$(Build.BuildId).zip'
+            artifact: serenityResult-$(webDriver)
+            displayName: 'publicar reporte'
+
+
+
+
+#          - bash: |
+#              token=$(curl -H "Content-Type: application/json" -X POST --data '{ "client_id": "$(client_id)","client_secret": "$(client_secret)" }' https://xray.cloud.xpand-it.com/api/v1/authenticate| tr -d '"')
+#              curl -H "Content-Type: text/xml" -X POST -H "Authorization: Bearer ${token}" --data @java-junit-calc/target/surefire-reports/TEST-com.xpand.java.CalcTest.xml https://xray.cloud.xpand-it.com/api/v1/import/execution/junit?projectKey=$(project_key)
