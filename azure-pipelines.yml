@@ -11,10 +11,18 @@ pool:
 
 steps:
 - task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    goals: 'compile'
-- task: Maven@3
+  displayName: 'ejecutar pruebas'
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'clean verify'
+    options: '-Dwebdriver.driver=$(webDriver) -X -Denvironment=dev'
+    publishJUnitResults: false
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkArchitectureOption: 'x64'
+    jdkVersionOption: '1.8'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
