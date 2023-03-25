@@ -56,7 +56,6 @@ public class PruebaSteps {
 
     @Then("{actor} no aparece ningun error")
     public void noApareceNingunError(Actor actor) throws InterruptedException {
-        Set<String> numero = driver.getWindowHandles();
 
         actor.attemptsTo(
 
