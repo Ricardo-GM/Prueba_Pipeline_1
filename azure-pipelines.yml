@@ -15,7 +15,7 @@ steps:
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'clean verify'
-    options: '-Dwebdriver.driver=$(webDriver) -X -Denvironment=dev'
+    options: '-Dwebdriver.driver=chrome '
     publishJUnitResults: false
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     mavenOptions: '-Xmx3072m'
