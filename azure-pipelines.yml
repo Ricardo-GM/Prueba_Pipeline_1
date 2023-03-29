@@ -29,19 +29,3 @@ jobs:
       mavenPomFile: $(mavenPomFile)
       goals: 'clean verify'
       options: '-Xmx3072m'
-
-  - task: PublishTestResults@2
-    displayName: 'Publicar resultados de pruebas'
-    inputs:
-      testRunner: 'JUnit'
-      testResultsFiles: $(testResultsDirectory)/TEST-*.xml
-      mergeTestResults: true
-      testRunTitle: 'Pruebas de Serenity Selenium'
-
-  - task: PublishCodeCoverageResults@1
-    displayName: 'Publicar resultados de cobertura de código'
-    inputs:
-      codeCoverageTool: $(codeCoverageTool)
-      summaryFileLocation: $(codeCoverageReportFile)
-      reportDirectory: '$(System.DefaultWorkingDirectory)/target/site/cobertura'
-      failIfCoverageEmpty: true
