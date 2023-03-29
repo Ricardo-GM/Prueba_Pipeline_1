@@ -1,28 +1,51 @@
-# Maven
-# Build your Java project and run tests with Apache Maven.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+# Nombre de la pipeline
+name: Pipeline de Pruebas Serenity Selenium
 
+# Triggers para iniciar la pipeline al hacer push al repositorio
 trigger:
-- main
+  batch: true
+  branches:
+    include:
+    - main
+    
+# Variables para la configuración
+variables:
+  mavenPomFile: 'pom.xml'
+  testResultsDirectory: '$(System.DefaultWorkingDirectory)/target/site/serenity'
+  codeCoverageTool: 'Cobertura'
+  codeCoverageReportFile: '$(System.DefaultWorkingDirectory)/target/site/cobertura/coverage.xml'
 
-pool:
-  vmImage: ubuntu-latest
+# Agent Job para la pipeline
+jobs:
+- job: Ejecutar_Pruebas_Serenity_Selenium
+  displayName: 'Ejecutar pruebas de Serenity Selenium'
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - task: MavenAuthenticate@0
+    displayName: 'Maven Authenticate'
+    inputs:
+      mavenServiceConnections: 'maven-service-connection'
 
-steps:
-- task: Maven@3
-  displayName: 'ejecutar pruebas'
-  inputs:
-    mavenPomFile: 'pom.xml'
-    goals: 'clean verify'
-    options: '-Dwebdriver.driver=chrome '
-    publishJUnitResults: false
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkArchitectureOption: 'x64'
-    jdkVersionOption: '1.8'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: false
-    effectivePomSkip: false
-    sonarQubeRunAnalysis: false
+  - task: Maven@3
+    displayName: 'Maven clean and verify'
+    inputs:
+      mavenPomFile: $(mavenPomFile)
+      goals: 'clean verify'
+      options: '-Xmx3072m'
+
+  - task: PublishTestResults@2
+    displayName: 'Publicar resultados de pruebas'
+    inputs:
+      testRunner: 'JUnit'
+      testResultsFiles: $(testResultsDirectory)/TEST-*.xml
+      mergeTestResults: true
+      testRunTitle: 'Pruebas de Serenity Selenium'
+
+  - task: PublishCodeCoverageResults@1
+    displayName: 'Publicar resultados de cobertura de código'
+    inputs:
+      codeCoverageTool: $(codeCoverageTool)
+      summaryFileLocation: $(codeCoverageReportFile)
+      reportDirectory: '$(System.DefaultWorkingDirectory)/target/site/cobertura'
+      failIfCoverageEmpty: true
