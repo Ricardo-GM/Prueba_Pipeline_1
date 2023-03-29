@@ -62,8 +62,6 @@ public class Hooks extends ConfiguredEnvironment {
 
                 chromeOptions.addArguments("--remote-allow-origins=*");
 
-                //chromeOptions.addExtensions(new File("src/test/resources/extensions/extension_6_3_3_0.crx"));
-
 
                 driver = new ChromeDriver(chromeOptions);
 

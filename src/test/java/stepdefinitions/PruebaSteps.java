@@ -6,8 +6,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Open;
+import net.serenitybdd.screenplay.actions.ScrollTo;
 import net.serenitybdd.screenplay.actions.Switch;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import tasks.CambiarVentana;
 import userinterface.LoginPage;
 
@@ -49,8 +52,9 @@ public class PruebaSteps {
     @When("{actor} selecciona un valor")
     public void seleccionaUnValor(Actor actor) throws InterruptedException {
 
+        actor.attemptsTo(
 
-        actor.attemptsTo();
+        );
 
     }
 
