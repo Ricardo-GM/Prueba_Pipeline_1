@@ -22,10 +22,6 @@ jobs:
   pool:
     vmImage: 'ubuntu-latest'
   steps:
-  - task: MavenAuthenticate@0
-    displayName: 'Maven Authenticate'
-    inputs:
-      mavenServiceConnections: 'maven-service-connection'
 
   - task: Maven@3
     displayName: 'Maven clean and verify'
