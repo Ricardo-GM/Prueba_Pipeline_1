@@ -15,17 +15,35 @@ variables:
   codeCoverageTool: 'Cobertura'
   codeCoverageReportFile: '$(System.DefaultWorkingDirectory)/target/site/cobertura/coverage.xml'
 
-# Agent Job para la pipeline
-jobs:
-- job: Ejecutar_Pruebas_Serenity_Selenium
-  displayName: 'Ejecutar pruebas de Serenity Selenium'
-  pool:
-    vmImage: 'ubuntu-latest'
-  steps:
+trigger: none 
+pr: none
+lockBehavior: sequential
 
-  - task: Maven@3
-    displayName: 'Maven clean and verify'
-    inputs:
-      mavenPomFile: $(mavenPomFile)
-      goals: 'clean verify'
-      options: '-Xmx3072m'
+
+stages:
+  - stage:
+    displayName: 'STAGE: Execute Functional Test on ${{ parameters.environment }}'
+    jobs:
+      - job:
+        displayName: 'JOB: Execute Functional Test on ${{ parameters.environment }}' # friendly name to display in the UI
+        workspace:
+          clean: all
+        steps:
+          - task: Maven@3
+            displayName: 'Run Test'
+            continueOnError: true
+            timeoutInMinutes: 20
+            inputs:
+              mavenPomFile: 'pom.xml'
+              goals: 'clean verify'
+              options: '-Dwebdriver.driver=$(webDriver) -Denvironment=${{ parameters.environment }}  -Dtags=@Failed '
+              publishJUnitResults: false
+              testResultsFiles: '**/surefire-reports/TEST-*.xml'
+              mavenOptions: '-Xmx3072m'
+              javaHomeOption: 'JDKVersion'
+              jdkArchitectureOption: 'x64'
+              jdkVersionOption: '1.8'
+              mavenVersionOption: 'Default'
+              mavenAuthenticateFeed: false
+              effectivePomSkip: false
+              sonarQubeRunAnalysis: false
