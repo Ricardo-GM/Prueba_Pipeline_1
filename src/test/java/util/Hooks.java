@@ -37,6 +37,7 @@ public class Hooks extends ConfiguredEnvironment {
 
     @Before
     public void setUp() {
+        /*
     //Obtener variables del archivo serenity.conf
     EnvironmentVariables variablesEntorno = ConfiguredEnvironment.getConfiguration().getEnvironmentVariables();
     //Obtener la url BASE
@@ -111,7 +112,7 @@ public class Hooks extends ConfiguredEnvironment {
 
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
-
+*/
     BrowseTheWeb browseTheWeb = BrowseTheWeb.with(driver);
 
     List<Ability> userAbilities = Arrays.asList(browseTheWeb, VerificarTitulo.en(driver));
