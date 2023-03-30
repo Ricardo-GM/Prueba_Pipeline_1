@@ -23,6 +23,17 @@ stages:
         displayName: 'JOB: Execute Functional Test}' # friendly name to display in the UI
         workspace:
           clean: all
+        strategy:
+          matrix:
+            'Ubuntu 20.04 Chrome':
+              vmImage: 'ubuntu-20.04'
+              webDriver: 'chrome'
+            'macOS-12 Safari':
+              vmImage: 'macOS-12'
+              webDriver: 'safari'
+            'windows-2022 Firefox':
+              vmImage: 'windows-2022'
+              webDriver: 'firefox'
         steps:
           - task: Maven@3
             displayName: 'Run Test'
