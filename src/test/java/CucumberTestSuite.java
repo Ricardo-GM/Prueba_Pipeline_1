@@ -7,7 +7,7 @@ import org.junit.runner.RunWith;
         plugin ={"json:target/build/cucumber.json"},
         stepNotifications = true,
         features = "src/test/resources/features",
-        tags = "@Prueba"
+        tags = "@ValidLogin"
 )
 
 
