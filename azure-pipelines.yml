@@ -17,10 +17,10 @@ variables:
 
 stages:
   - stage:
-    displayName: 'STAGE: Execute Functional Test on ${{ parameters.environment }}'
+    displayName: 'STAGE: Execute Functional Test'
     jobs:
       - job:
-        displayName: 'JOB: Execute Functional Test on ${{ parameters.environment }}' # friendly name to display in the UI
+        displayName: 'JOB: Execute Functional Test}' # friendly name to display in the UI
         workspace:
           clean: all
         steps:
@@ -31,7 +31,7 @@ stages:
             inputs:
               mavenPomFile: 'pom.xml'
               goals: 'clean verify'
-              options: '-Dwebdriver.driver=$(webDriver) -Denvironment=${{ parameters.environment }}  -Dtags=@Failed '
+              options: '-Dwebdriver.driver=$(webDriver)  -Dtags=@Failed '
               publishJUnitResults: false
               testResultsFiles: '**/surefire-reports/TEST-*.xml'
               mavenOptions: '-Xmx3072m'
