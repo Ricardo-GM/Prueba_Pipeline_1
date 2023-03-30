@@ -31,7 +31,7 @@ stages:
             inputs:
               mavenPomFile: 'pom.xml'
               goals: 'clean verify'
-              options: '-Dwebdriver.driver="edge"  -Dtags=@ValidLogin '
+              #options: '-Dwebdriver.driver="edge"  -Dtags=@ValidLogin '
               publishJUnitResults: false
               testResultsFiles: '**/surefire-reports/TEST-*.xml'
               mavenOptions: '-Xmx3072m'
