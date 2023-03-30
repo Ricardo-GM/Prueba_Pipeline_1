@@ -23,17 +23,17 @@ stages:
         displayName: 'JOB: Execute Functional Test}' # friendly name to display in the UI
         workspace:
           clean: all
-        strategy:
-          matrix:
-            'Ubuntu 20.04 Chrome':
-              vmImage: 'ubuntu-20.04'
-              webDriver: 'chrome'
-            'macOS-12 Safari':
-              vmImage: 'macOS-12'
-              webDriver: 'safari'
-            'windows-2022 Firefox':
-              vmImage: 'windows-2022'
-              webDriver: 'firefox'
+        ##strategy:
+        #  matrix:
+        #    'Ubuntu 20.04 Chrome':
+        #      vmImage: 'ubuntu-20.04'
+        #      webDriver: 'chrome'
+        #    'macOS-12 Safari':
+        #      vmImage: 'macOS-12'
+        #      webDriver: 'safari'
+        #    'windows-2022 Firefox':
+        #      vmImage: 'windows-2022'
+        #      webDriver: 'firefox'
         steps:
           - task: Maven@3
             displayName: 'Run Test'
@@ -42,7 +42,8 @@ stages:
             inputs:
               mavenPomFile: 'pom.xml'
               goals: 'clean verify'
-              #options: '-Dwebdriver.driver="edge"  -Dtags=@ValidLogin '
+              options: '-Dwebdriver.driver="edge" '
+              # -Dtags=@ValidLogin'
               publishJUnitResults: false
               testResultsFiles: '**/surefire-reports/TEST-*.xml'
               mavenOptions: '-Xmx3072m'
