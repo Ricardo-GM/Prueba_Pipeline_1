@@ -15,11 +15,6 @@ variables:
   codeCoverageTool: 'Cobertura'
   codeCoverageReportFile: '$(System.DefaultWorkingDirectory)/target/site/cobertura/coverage.xml'
 
-trigger: none 
-pr: none
-lockBehavior: sequential
-
-
 stages:
   - stage:
     displayName: 'STAGE: Execute Functional Test on ${{ parameters.environment }}'
