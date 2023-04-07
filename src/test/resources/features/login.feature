@@ -1,7 +1,7 @@
 @Login
   Feature: Login
 
-    @AllLogin
+    @IJX1-2
     Scenario Outline: Como usuario, realizo login con distintos tipos de usuario
       Given user carga de manera correcta el archivo CSV
       And  user se encuentra en la pagina de login
@@ -26,3 +26,8 @@
       Given user se encuentra en la pagina de login
       When user intenta iniciar sension con credenciales invalidas
       Then user visualiza un mensaje de inicio de sesion fallido
+
+    @PruebaDatos
+    Scenario: Como usuario, quiero verificar si existen ciertos valores en una pagina
+      Given user se encuentra en la pagina de login
+      Then user verifica si las palabras de csv existen

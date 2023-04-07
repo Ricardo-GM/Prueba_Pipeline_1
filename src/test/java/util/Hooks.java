@@ -2,33 +2,35 @@ package util;
 
 
 import abilities.VerificarTitulo;
-import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
+import io.cucumber.java.Scenario;
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.environment.ConfiguredEnvironment;
 import net.serenitybdd.screenplay.Ability;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.webdriver.WebDriverFacade;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.ie.InternetExplorerOptions;
 
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
 
 public class Hooks extends ConfiguredEnvironment {
-
     public static WebDriver driver;
+    private static Scenario scenario;
+
+    @Before
+    public void setScenario (Scenario scenario) {
+        this.scenario = scenario;
+    }
+
 
     @ParameterType("user|admin")
     public Actor actor(String name) {
@@ -123,8 +125,6 @@ public class Hooks extends ConfiguredEnvironment {
 
     }
 
-
-
 /*
     @After
     public void tearDown() {
@@ -133,6 +133,21 @@ public class Hooks extends ConfiguredEnvironment {
     }
 
 */
+
+    //Método para tomar screenshots
+
+    public static void tomarCapturaDePantalla(){
+        WebDriver driver = Serenity.getWebdriverManager().getCurrentDriver();
+        WebDriverFacade facade = (WebDriverFacade) driver;
+        byte[] evidencia = ((TakesScreenshot) facade.getProxiedDriver()).getScreenshotAs(OutputType.BYTES);
+        scenario.attach(evidencia, "image/png", "evidencias");
+
+    }
+
+    public static void setXrayEnvironmentVariables() {
+        System.setProperty("jira.xray.client-id", Constantes.JIRA_XRAY_CLIENT_ID);
+        System.setProperty("jira.xray.client-secret", Constantes.JIRA_XRAY_CLIENT_SECRET);
+    }
 
 
 

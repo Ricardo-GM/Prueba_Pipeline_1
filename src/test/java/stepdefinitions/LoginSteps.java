@@ -1,10 +1,10 @@
 package stepdefinitions;
 
-import actions.Base.SelectValue;
 import exceptions.ExceptionHandler;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.And;
-import net.thucydides.core.annotations.Steps;
-import org.junit.Test;
+import net.serenitybdd.core.Serenity;
 import tasks.CargarArchivo;
 import tasks.VerificarMensajeFlash;
 import actions.Navigation.Navigate;
@@ -14,8 +14,8 @@ import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import questions.PostLoginMessage;
 import tasks.RealizarLogin;
-import userinterface.LoginPage;
 import util.Constantes;
+import util.Hooks;
 import util.LoginUser;
 import util.Usuario;
 
@@ -23,7 +23,17 @@ import util.Usuario;
 import java.util.List;
 
 
+
+
 public class LoginSteps {
+    /*
+    private Scenario scenario;
+
+    @Before
+    public void setScenario (Scenario scenario) {
+        this.scenario = scenario;
+    }
+    */
 
     //List<Usuario> listaUsuarios = new ArrayList<>();
 
@@ -32,12 +42,14 @@ public class LoginSteps {
         try {
             actor.attemptsTo(
                     CargarArchivo.conNombre("src/test/resources/data/prueba.csv")
-
-
             );
         }catch (Throwable e) {
             ExceptionHandler.Error(e);
         }
+
+
+        Hooks.tomarCapturaDePantalla();
+
 
     }
 
@@ -50,7 +62,7 @@ public class LoginSteps {
         }catch (Throwable e) {
             ExceptionHandler.Error(e);
         }
-
+        Hooks.tomarCapturaDePantalla();
     }
 
 
@@ -141,6 +153,7 @@ public class LoginSteps {
             ExceptionHandler.Error(e);
         }
     }
+
 
 
 }
