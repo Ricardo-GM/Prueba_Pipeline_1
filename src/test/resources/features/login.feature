@@ -14,7 +14,7 @@
       |invalido   |Your username is invalid!|
       |admin      |Your username is invalid!|
 
-    @ValidLogin
+    @IJX1-9
     Scenario: Como usuario, puedo entrar al area segura con credenciales validas.
       Given user se encuentra en la pagina de login
       When user intenta iniciar sesion con credencial validas
@@ -27,7 +27,3 @@
       When user intenta iniciar sension con credenciales invalidas
       Then user visualiza un mensaje de inicio de sesion fallido
 
-    @PruebaDatos
-    Scenario: Como usuario, quiero verificar si existen ciertos valores en una pagina
-      Given user se encuentra en la pagina de login
-      Then user verifica si las palabras de csv existen

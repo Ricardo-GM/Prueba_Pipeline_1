@@ -86,12 +86,24 @@
       <version>${hamcrest.version}</version>
       <scope>test</scope>
     </dependency>
+    <!-- Dependencia para consumir API's de Xray para la integración-->
     <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
       <version>5.3.0</version>
       <scope>test</scope>
+    </dependency>
+    <!-- Dependencia para leer y escribir archivos excel-->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>4.1.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>4.1.2</version>
     </dependency>
 
 
