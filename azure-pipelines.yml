@@ -35,22 +35,33 @@ stages:
         #      vmImage: 'windows-2022'
         #      webDriver: 'firefox'
         steps:
-          - task: Maven@3
-            displayName: 'Run Test'
-            continueOnError: true
-            timeoutInMinutes: 20
-            inputs:
-              mavenPomFile: 'pom.xml'
-              goals: 'clean verify'
-              options: '-Dwebdriver.driver="chrome" '
-              # -Dtags=@ValidLogin'
-              publishJUnitResults: false
-              testResultsFiles: '**/surefire-reports/TEST-*.xml'
-              mavenOptions: '-Xmx3072m'
-              javaHomeOption: 'JDKVersion'
-              jdkArchitectureOption: 'x64'
-              jdkVersionOption: '1.11'
-              mavenVersionOption: 'Default'
-              mavenAuthenticateFeed: false
-              effectivePomSkip: false
-              sonarQubeRunAnalysis: false
+        - task: Maven@4
+          inputs:
+            mavenPomFile: 'pom.xml'
+            goals: 'compile'
+            publishJUnitResults: false
+            javaHomeOption: 'JDKVersion'
+            mavenVersionOption: 'Default'
+            mavenAuthenticateFeed: false
+            effectivePomSkip: false
+            sonarQubeRunAnalysis: false
+
+        - task: Maven@3
+          displayName: 'Run Test'
+          continueOnError: true
+          timeoutInMinutes: 20
+          inputs:
+            mavenPomFile: 'pom.xml'
+            goals: 'clean verify'
+            options: '-Dwebdriver.driver="chrome" '
+            # -Dtags=@ValidLogin'
+            publishJUnitResults: false
+            testResultsFiles: '**/surefire-reports/TEST-*.xml'
+            mavenOptions: '-Xmx3072m'
+            javaHomeOption: 'JDKVersion'
+            jdkArchitectureOption: 'x64'
+            jdkVersionOption: '1.11'
+            mavenVersionOption: 'Default'
+            mavenAuthenticateFeed: false
+            effectivePomSkip: false
+            sonarQubeRunAnalysis: false
