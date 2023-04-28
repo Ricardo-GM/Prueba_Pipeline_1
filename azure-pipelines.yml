@@ -49,7 +49,7 @@ stages:
               mavenOptions: '-Xmx3072m'
               javaHomeOption: 'JDKVersion'
               jdkArchitectureOption: 'x64'
-              jdkVersionOption: '1.11'
+              jdkVersionOption: '1.8'
               mavenVersionOption: 'Default'
               mavenAuthenticateFeed: false
               effectivePomSkip: false
