@@ -2,23 +2,24 @@ package stepdefinitions;
 
 import exceptions.ExceptionHandler;
 import io.cucumber.java.en.And;
+import net.serenitybdd.screenplay.actions.DoubleClick;
 import net.serenitybdd.screenplay.actions.SendKeys;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import tasks.CargarArchivo;
-import tasks.LeerExcel;
-import tasks.VerificarMensajeFlash;
+import tasks.*;
 import actions.Navigation.Navigate;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.Actor;
 import questions.PostLoginMessage;
-import tasks.RealizarLogin;
 import userinterface.LoginPage;
 import util.*;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static net.serenitybdd.core.Serenity.getDriver;
 
 
 public class LoginSteps {
@@ -128,7 +129,8 @@ public class LoginSteps {
                 actor.attemptsTo(
                         //RealizarLogin.Como(LoginUser.INVALID_USER)
                         RealizarLogin.Con(tipoBusqueda, numeroDocumento),
-                        SendKeys.of(teclas).into(LoginPage.getLoginButton())
+                        SendKeys.of(teclas).into(LoginPage.getLoginButton()),
+                        EscribirExcel.conNombre("src/test/resources/data/SalidaGarantiasDatos.xlsx",datosSalidaGarantia.getNumeroFila())
                 );
 
                 visualiza_un_mensaje_de_inicio_de_sesion_fallido(actor);
@@ -141,6 +143,7 @@ public class LoginSteps {
 
  */
                 iterador++;
+
 
             }
 

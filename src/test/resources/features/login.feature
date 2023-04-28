@@ -1,7 +1,7 @@
 @Login
   Feature: Login
 
-    @IJX1-2
+    @TEST-IJX1-2
     Scenario Outline: Como usuario, realizo login con distintos tipos de usuario
       Given user carga de manera correcta el archivo CSV
       And  user se encuentra en la pagina de login

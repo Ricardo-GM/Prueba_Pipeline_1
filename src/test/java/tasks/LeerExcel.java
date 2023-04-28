@@ -37,11 +37,15 @@ public class LeerExcel implements Task {
             int numRows = sheet.getPhysicalNumberOfRows(); // Obtiene el número de filas en la hoja de cálculo
             for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                 Row row = sheet.getRow(i);
-                String tipoBusqueda = row.getCell(0).getStringCellValue();
-                String numeroDocumento = row.getCell(1).getStringCellValue();
-                String garantia = row.getCell(2).getStringCellValue();
-                String motivo = row.getCell(3).getStringCellValue();
-                datosSalidaGarantias.add(new DatosSalidaGarantia(tipoBusqueda,numeroDocumento,garantia,motivo));
+                if(row.getCell(4) == null ||  row.getCell(4).getCellType() == CellType.BLANK) {
+                    String tipoBusqueda = row.getCell(0).getStringCellValue();
+                    String numeroDocumento = row.getCell(1).getStringCellValue();
+                    String garantia = row.getCell(2).getStringCellValue();
+                    String motivo = row.getCell(3).getStringCellValue();
+                    datosSalidaGarantias.add(new DatosSalidaGarantia(tipoBusqueda,numeroDocumento,garantia,motivo, row.getRowNum()));
+                }
+
+
             }
             workbook.close();
             fis.close();
