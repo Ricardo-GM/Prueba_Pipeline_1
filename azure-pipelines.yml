@@ -41,7 +41,7 @@ stages:
             timeoutInMinutes: 20
             inputs:
               mavenPomFile: 'pom.xml'
-              goals: 'clean verify'
+              goals: 'mvn clean verify'
               options: '-Dwebdriver.driver="chrome" '
               # -Dtags=@ValidLogin'
               publishJUnitResults: false
