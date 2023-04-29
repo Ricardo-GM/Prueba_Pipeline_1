@@ -19,6 +19,7 @@ import org.openqa.selenium.WebDriver;
 
 
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 import static net.serenitybdd.core.Serenity.getDriver;
@@ -142,7 +143,11 @@ public class Hooks extends ConfiguredEnvironment {
         //WebDriver driver = Serenity.getWebdriverManager().getCurrentDriver();
         //WebDriverFacade facade = (WebDriverFacade) driver;
         byte[] evidencia = ((TakesScreenshot) Serenity.getDriver()).getScreenshotAs(OutputType.BYTES);
-        scenario.attach(evidencia, "image/png", "evidencias");
+        //scenario.attach(evidencia, "image/png", "evidencias");
+        String evidenciaBase64 = Base64.getEncoder().encodeToString(evidencia);
+        Serenity.recordReportData()
+                .withTitle("captura de pantalla")
+                .andContents(evidenciaBase64);
 
     }
 
