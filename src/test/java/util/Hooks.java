@@ -142,14 +142,17 @@ public class Hooks extends ConfiguredEnvironment {
     public static void tomarCapturaDePantalla(){
         //WebDriver driver = Serenity.getWebdriverManager().getCurrentDriver();
         //WebDriverFacade facade = (WebDriverFacade) driver;
-        byte[] evidencia = ((TakesScreenshot) Serenity.getDriver()).getScreenshotAs(OutputType.BYTES);
+            //byte[] evidencia = ((TakesScreenshot) Serenity.getDriver()).getScreenshotAs(OutputType.BYTES);
         //scenario.attach(evidencia, "image/png", "evidencias");
+        /*
         if(evidencia != null) {
             String evidenciaBase64 = Base64.getEncoder().encodeToString(evidencia);
             Serenity.recordReportData()
                     .withTitle("captura de pantalla")
                     .andContents(evidenciaBase64);
         }
+
+         */
 
 
     }
