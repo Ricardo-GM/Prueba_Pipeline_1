@@ -137,7 +137,7 @@ public class Hooks extends ConfiguredEnvironment {
     //Método para tomar screenshots
 
     public static void tomarCapturaDePantalla(){
-        WebDriver driver = Serenity.getWebdriverManager().getCurrentDriver();
+        //WebDriver driver = Serenity.getWebdriverManager().getCurrentDriver();
         WebDriverFacade facade = (WebDriverFacade) driver;
         byte[] evidencia = ((TakesScreenshot) facade.getProxiedDriver()).getScreenshotAs(OutputType.BYTES);
         scenario.attach(evidencia, "image/png", "evidencias");
