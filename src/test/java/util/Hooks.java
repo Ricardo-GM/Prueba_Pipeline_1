@@ -21,9 +21,13 @@ import org.openqa.selenium.WebDriver;
 import java.util.Arrays;
 import java.util.List;
 
+import static net.serenitybdd.core.Serenity.getDriver;
+
 
 public class Hooks extends ConfiguredEnvironment {
-    public static WebDriver driver;
+    //public static WebDriver driver;
+
+    static WebDriver driver = getDriver();
     private static Scenario scenario;
 
     @Before
