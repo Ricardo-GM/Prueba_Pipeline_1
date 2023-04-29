@@ -20,7 +20,7 @@ stages:
     displayName: 'STAGE: Execute Functional Test'
     jobs:
       - job:
-        displayName: 'JOB: Execute Functional Test}' # friendly name to display in the UI
+        displayName: 'JOB: Execute Functional Test' # friendly name to display in the UI
         workspace:
           clean: all
         ##strategy:
@@ -60,7 +60,7 @@ stages:
             mavenOptions: '-Xmx3072m'
             javaHomeOption: 'JDKVersion'
             jdkArchitectureOption: 'x64'
-            jdkVersionOption: '1.11'
+            jdkVersionOption: '1.8'
             mavenVersionOption: 'Default'
             mavenAuthenticateFeed: false
             effectivePomSkip: false
