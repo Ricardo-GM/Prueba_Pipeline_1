@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 public class JiraXrayOperation {
@@ -53,9 +54,11 @@ public class JiraXrayOperation {
     }
 
     public static String getCucumberJsonContentAsString(String cucumberJsonFile) {
-    Path cucumberPath = Path.of(System.getProperty("user.dir") +  cucumberJsonFile);
+    //Path cucumberPath = Path.of(System.getProperty("user.dir") +  cucumberJsonFile);
+    Path cucumberPath = Paths.get(System.getProperty("user.dir"), cucumberJsonFile);
     try {
-        return Files.readString(cucumberPath, StandardCharsets.UTF_8);
+        //return Files.readString(cucumberPath, StandardCharsets.UTF_8);
+        return new String(Files.readAllBytes(cucumberPath), StandardCharsets.UTF_8);
 
     }
     catch (IOException e) {
