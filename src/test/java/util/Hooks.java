@@ -25,9 +25,7 @@ import static net.serenitybdd.core.Serenity.getDriver;
 
 
 public class Hooks extends ConfiguredEnvironment {
-    //public static WebDriver driver;
-
-    static WebDriver driver = getDriver();
+    public static WebDriver driver;
     private static Scenario scenario;
 
     @Before
@@ -142,8 +140,8 @@ public class Hooks extends ConfiguredEnvironment {
 
     public static void tomarCapturaDePantalla(){
         //WebDriver driver = Serenity.getWebdriverManager().getCurrentDriver();
-        WebDriverFacade facade = (WebDriverFacade) driver;
-        byte[] evidencia = ((TakesScreenshot) facade.getProxiedDriver()).getScreenshotAs(OutputType.BYTES);
+        //WebDriverFacade facade = (WebDriverFacade) driver;
+        byte[] evidencia = ((TakesScreenshot) Serenity.getDriver()).getScreenshotAs(OutputType.BYTES);
         scenario.attach(evidencia, "image/png", "evidencias");
 
     }
