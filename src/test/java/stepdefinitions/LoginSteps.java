@@ -19,7 +19,6 @@ import util.*;
 import java.util.Arrays;
 import java.util.List;
 
-import static net.serenitybdd.core.Serenity.getDriver;
 
 
 public class LoginSteps {
