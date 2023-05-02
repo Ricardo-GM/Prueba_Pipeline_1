@@ -20,6 +20,7 @@ stages:
     displayName: 'STAGE: Execute Functional Test'
     jobs:
       - job:
+      
         displayName: 'JOB: Execute Functional Test' # friendly name to display in the UI
         workspace:
           clean: all
@@ -61,3 +62,9 @@ stages:
             jdkVersionOption: '1.8'
             mavenVersionOption: 'Default'
             mavenAuthenticateFeed: false
+            
+      - job: Test
+        steps:
+        - script: |
+            google-chrome --version
+            chromedriver --version
