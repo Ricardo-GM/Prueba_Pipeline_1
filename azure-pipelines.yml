@@ -35,7 +35,7 @@ stages:
         #      vmImage: 'windows-2022'
         #      webDriver: 'firefox'
         steps:
-        - task: Maven@4
+        - task: Maven@1
           inputs:
             mavenPomFile: 'pom.xml'
             goals: 'compile'
@@ -43,25 +43,21 @@ stages:
             javaHomeOption: 'JDKVersion'
             mavenVersionOption: 'Default'
             mavenAuthenticateFeed: false
-            effectivePomSkip: false
-            sonarQubeRunAnalysis: false
 
-        - task: Maven@3
+        - task: Maven@2
           displayName: 'Run Test'
           continueOnError: true
           timeoutInMinutes: 20
           inputs:
             mavenPomFile: 'pom.xml'
             goals: 'clean verify'
-            #options: '-Dwebdriver.driver="chrome" '
+            options: '-Dwebdriver.driver=src/test/resources/webdriver/linux/chromedriver '
             # -Dtags=@ValidLogin'
             publishJUnitResults: false
             testResultsFiles: '**/surefire-reports/TEST-*.xml'
-            mavenOptions: '-Xmx3072m'
             javaHomeOption: 'JDKVersion'
+            mavenOptions: '-Xmx3072m'
             jdkArchitectureOption: 'x64'
             jdkVersionOption: '1.8'
             mavenVersionOption: 'Default'
             mavenAuthenticateFeed: false
-            effectivePomSkip: false
-            sonarQubeRunAnalysis: false
