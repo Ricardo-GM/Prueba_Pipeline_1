@@ -22,7 +22,7 @@ import static util.Hooks.setXrayEnvironmentVariables;
 
 
 public class CucumberTestSuite {
-
+/*
     @BeforeClass
     public static void beforeAll() {
         setXrayEnvironmentVariables();
@@ -35,4 +35,6 @@ public class CucumberTestSuite {
         JiraXrayOperation.importCucumberResult("/target/build/cucumber.json");
     }
 
+
+ */
 }
