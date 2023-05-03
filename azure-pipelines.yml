@@ -52,7 +52,7 @@ stages:
           inputs:
             mavenPomFile: 'pom.xml'
             goals: 'clean verify'
-            #options: '-Dwebdriver.driver=$(webdriver.chrome.driver) '
+            options: '-Dwebdriver.driver=$(webDriver) '
             #options: '-Dwebdriver.chrome.driver=$(System.DefaultWorkingDirectory)/src/test/resources/webdriver/linux/chromedriver'
             # -Dtags=@ValidLogin'
             publishJUnitResults: false
