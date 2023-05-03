@@ -52,7 +52,7 @@ stages:
           inputs:
             mavenPomFile: 'pom.xml'
             goals: 'clean verify'
-            options: '-Dwebdriver.driver="chrome" '
+            options: '-Dwebdriver.driver=$(webdriver.chrome.driver) '
             # -Dtags=@ValidLogin'
             publishJUnitResults: false
             testResultsFiles: '**/surefire-reports/TEST-*.xml'
