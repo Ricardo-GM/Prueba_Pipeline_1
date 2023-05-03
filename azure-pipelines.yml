@@ -24,19 +24,10 @@ stages:
         displayName: 'JOB: Execute Functional Test' # friendly name to display in the UI
         workspace:
           clean: all
-        ##strategy:
-        #  matrix:
-        #    'Ubuntu 20.04 Chrome':
-        #      vmImage: 'ubuntu-20.04'
-        #      webDriver: 'chrome'
-        #    'macOS-12 Safari':
-        #      vmImage: 'macOS-12'
-        #      webDriver: 'safari'
-        #    'windows-2022 Firefox':
-        #      vmImage: 'windows-2022'
-        #      webDriver: 'firefox'
+        
         steps:
         - task: Maven@1
+          displayName: Maven Compile
           inputs:
             mavenPomFile: 'pom.xml'
             goals: 'compile'
@@ -44,16 +35,16 @@ stages:
             javaHomeOption: 'JDKVersion'
             mavenVersionOption: 'Default'
             mavenAuthenticateFeed: false
+          
 
         - task: Maven@3
-          displayName: 'Run Test'
+          displayName: Maven clean verify
           continueOnError: true
           timeoutInMinutes: 20
           inputs:
             mavenPomFile: 'pom.xml'
             goals: 'clean verify'
             options: '-Dwebdriver.chrome.driver=$(webDriver) '
-            #options: '-Dwebdriver.chrome.driver=$(System.DefaultWorkingDirectory)/src/test/resources/webdriver/linux/chromedriver'
             # -Dtags=@ValidLogin'
             publishJUnitResults: false
             testResultsFiles: '**/surefire-reports/TEST-*.xml'
@@ -63,13 +54,5 @@ stages:
             jdkVersionOption: '1.8'
             mavenVersionOption: 'Default'
             mavenAuthenticateFeed: false
-            
-      - job: Test
-        steps:
-        - script: |
-            google-chrome --version
-            chromedriver --version
-            echo $PATH
-            echo $JAVA_HOME
-            echo $CHROMEWEBDRIVER
-          displayName: 'Print environment variables'
+          
+
