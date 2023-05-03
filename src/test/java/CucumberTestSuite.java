@@ -17,7 +17,7 @@ import static util.Hooks.setXrayEnvironmentVariables;
         plugin ={"json:target/build/cucumber.json"},
         stepNotifications = true,
         features = "src/test/resources/features",
-        tags = "@IJX1-9"
+        tags = "@IJX1-2"
 )
 
 
