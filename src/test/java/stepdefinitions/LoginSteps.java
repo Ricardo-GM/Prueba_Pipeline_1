@@ -34,7 +34,7 @@ public class LoginSteps {
         }
 
 
-        //Hooks.tomarCapturaDePantalla();
+        Hooks.tomarCapturaDePantalla();
 
 
     }
@@ -51,7 +51,7 @@ public class LoginSteps {
         }catch (Throwable e) {
             ExceptionHandler.Error(e);
         }
-        //Hooks.tomarCapturaDePantalla();
+        Hooks.tomarCapturaDePantalla();
 
     }
 
@@ -84,7 +84,7 @@ public class LoginSteps {
             } catch (Throwable e) {
                 ExceptionHandler.Error(e);
             }
-            //Hooks.tomarCapturaDePantalla();
+            Hooks.tomarCapturaDePantalla();
 
     }
     @Then("{actor} visualiza un mensaje de inicio de sesion valida")
@@ -96,7 +96,7 @@ public class LoginSteps {
         } catch (Throwable e) {
             ExceptionHandler.Error(e);
         }
-        //Hooks.tomarCapturaDePantalla();
+        Hooks.tomarCapturaDePantalla();
 
     }
 
@@ -152,7 +152,7 @@ public class LoginSteps {
         }catch (Throwable e) {
             ExceptionHandler.Error(e);
         }
-        //Hooks.tomarCapturaDePantalla();
+        Hooks.tomarCapturaDePantalla();
 
     }
     @Then("{actor} visualiza un mensaje de inicio de sesion fallido")
@@ -166,7 +166,7 @@ public class LoginSteps {
         }catch (Throwable e) {
             ExceptionHandler.Error(e);
         }
-        //Hooks.tomarCapturaDePantalla();
+        Hooks.tomarCapturaDePantalla();
 
 
     }
@@ -182,7 +182,7 @@ public class LoginSteps {
         }catch (Throwable e) {
             ExceptionHandler.Error(e);
         }
-        //Hooks.tomarCapturaDePantalla();
+        Hooks.tomarCapturaDePantalla();
 
     }
 
@@ -196,7 +196,7 @@ public class LoginSteps {
         }catch (Throwable e) {
             ExceptionHandler.Error(e);
         }
-        //Hooks.tomarCapturaDePantalla();
+        Hooks.tomarCapturaDePantalla();
     }
 
 
