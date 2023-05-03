@@ -6,31 +6,25 @@ import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
 import io.cucumber.java.Scenario;
 import net.serenitybdd.core.Serenity;
+import net.serenitybdd.core.SerenityReports;
 import net.serenitybdd.core.environment.ConfiguredEnvironment;
 import net.serenitybdd.screenplay.Ability;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
-import net.thucydides.core.util.EnvironmentVariables;
 import net.thucydides.core.webdriver.WebDriverFacade;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.ie.InternetExplorerOptions;
-
-
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
-
-import static net.serenitybdd.core.Serenity.getDriver;
-
+import net.serenitybdd.core.Serenity;
 
 public class Hooks extends ConfiguredEnvironment {
     public static WebDriver driver;
@@ -149,11 +143,11 @@ public class Hooks extends ConfiguredEnvironment {
     //Método para tomar screenshots
 
     public static void tomarCapturaDePantalla(){
-        WebDriver driver = Serenity.getWebdriverManager().getCurrentDriver();
-        //WebDriverFacade facade = (WebDriverFacade) driver;
-        final byte[] evidencia = ((TakesScreenshot) Serenity.getDriver()).getScreenshotAs(OutputType.BYTES);
-        scenario.attach(evidencia, "image/png", "evidencias");
         /*
+        WebDriver driver = Serenity.getWebdriverManager().getCurrentDriver();
+        byte[] evidencia = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        scenario.attach(evidencia, "image/png", "evidencias");
+
         if(evidencia != null) {
             String evidenciaBase64 = Base64.getEncoder().encodeToString(evidencia);
             Serenity.recordReportData()
@@ -164,6 +158,23 @@ public class Hooks extends ConfiguredEnvironment {
          */
 
 
+        WebDriver driver = ((WebDriverFacade) Serenity.getWebdriverManager().getCurrentDriver()).getProxiedDriver();
+        // Tomar la captura de pantalla y guardarla como un archivo
+        byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        //Adjuntar la captura de pantalla al informe
+        scenario.attach(screenshot, "image/png", "evidencia");
+
+
+
+    }
+
+    public static byte[] takeScreenshot() throws AWTException, IOException {
+        Robot robot = new Robot();
+        Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+        BufferedImage screenFullImage = robot.createScreenCapture(screenRect);
+        ByteArrayOutputStream screenshot = new ByteArrayOutputStream();
+        ImageIO.write(screenFullImage, "png", screenshot);
+        return screenshot.toByteArray();
     }
 
     public static void setXrayEnvironmentVariables() {

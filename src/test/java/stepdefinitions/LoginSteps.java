@@ -29,12 +29,13 @@ public class LoginSteps {
             actor.attemptsTo(
                     CargarArchivo.conNombre("src/test/resources/data/prueba.csv")
             );
+            Hooks.tomarCapturaDePantalla();
         }catch (Throwable e) {
             ExceptionHandler.Error(e);
         }
 
 
-        Hooks.tomarCapturaDePantalla();
+
 
 
     }
@@ -48,10 +49,10 @@ public class LoginSteps {
                     LeerExcel.conNombre("src/test/resources/data/SalidaGarantiasDatos.xlsx"),
                     Navigate.toLoginPage()
             );
+            Hooks.tomarCapturaDePantalla();
         }catch (Throwable e) {
             ExceptionHandler.Error(e);
         }
-        Hooks.tomarCapturaDePantalla();
 
     }
 
@@ -79,12 +80,12 @@ public class LoginSteps {
                     }
                 }
 
+                Hooks.tomarCapturaDePantalla();
 
 
             } catch (Throwable e) {
                 ExceptionHandler.Error(e);
             }
-            Hooks.tomarCapturaDePantalla();
 
     }
     @Then("{actor} visualiza un mensaje de inicio de sesion valida")
@@ -93,10 +94,11 @@ public class LoginSteps {
             actor.attemptsTo(
                     VerificarMensajeFlash.Contiene(PostLoginMessage.Text().answeredBy(actor), Constantes.MENSAJE_LOGIN_CORRECTO )
             );
+            Hooks.tomarCapturaDePantalla();
         } catch (Throwable e) {
             ExceptionHandler.Error(e);
         }
-        Hooks.tomarCapturaDePantalla();
+
 
     }
 
@@ -145,6 +147,7 @@ public class LoginSteps {
 
 
             }
+            Hooks.tomarCapturaDePantalla();
 
 
 
@@ -152,7 +155,7 @@ public class LoginSteps {
         }catch (Throwable e) {
             ExceptionHandler.Error(e);
         }
-        Hooks.tomarCapturaDePantalla();
+
 
     }
     @Then("{actor} visualiza un mensaje de inicio de sesion fallido")
@@ -163,10 +166,11 @@ public class LoginSteps {
                     VerificarMensajeFlash.Contiene(PostLoginMessage.Text().answeredBy(actor), Constantes.MENSAJE_LOGIN_INCORRECTO)
 
             );
+            Hooks.tomarCapturaDePantalla();
         }catch (Throwable e) {
             ExceptionHandler.Error(e);
         }
-        Hooks.tomarCapturaDePantalla();
+
 
 
     }
