@@ -69,3 +69,7 @@ stages:
         - script: |
             google-chrome --version
             chromedriver --version
+            echo $PATH
+            echo $JAVA_HOME
+            echo $CHROMEWEBDRIVER
+          displayName: 'Print environment variables'
