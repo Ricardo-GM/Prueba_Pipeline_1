@@ -6,6 +6,7 @@ import net.serenitybdd.screenplay.actions.DoubleClick;
 import net.serenitybdd.screenplay.actions.SendKeys;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import tasks.*;
 import actions.Navigation.Navigate;
 import io.cucumber.java.en.Given;
@@ -19,6 +20,7 @@ import util.*;
 import java.util.Arrays;
 import java.util.List;
 
+import static util.Hooks.driver;
 
 
 public class LoginSteps {
