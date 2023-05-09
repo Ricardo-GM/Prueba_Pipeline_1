@@ -20,12 +20,17 @@ stages:
     displayName: 'STAGE: Execute Functional Test'
     jobs:
       - job:
-      
         displayName: 'JOB: Execute Functional Test' # friendly name to display in the UI
         workspace:
           clean: all
         
         steps:
+        - task: Bash@3
+          displayName: 'Imprimir versión de Chrome'
+          inputs:
+            targetType: 'inline'
+            script: |
+              google-chrome --version
         - task: Maven@1
           displayName: Maven Compile
           inputs:
@@ -35,7 +40,13 @@ stages:
             javaHomeOption: 'JDKVersion'
             mavenVersionOption: 'Default'
             mavenAuthenticateFeed: false
-          
+        - task: Bash@3
+          displayName: 'Agregar permisos de ejecución a Chromedriver'
+          inputs:
+            targetType: 'inline'
+            script: |
+              cd src/test/resources/webdriver/linux/
+              chmod +x chromedriver
 
         - task: Maven@3
           displayName: Maven clean verify
