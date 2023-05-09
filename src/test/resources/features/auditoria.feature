@@ -1,11 +1,12 @@
 @Auditoria
 Feature: Validation Auditor
 
-  @IJX1-74
+  @Auditoria-Scenario
   Scenario Outline: Validar configuracion de auditoria.
     Given user carga el archivo CSV para validar las opciones de seguridad
     Given user ha iniciado sesion correctamente
     And user ingresa al Consola Administrativa
+    And user selecciona idioma spanish en la aplicacion Navigator
     #And Juan en la pagina principal de IBM Administrative Console for Content Platform Engine
     When user despliega la opcion de Almacenes de Objetos
     And user selecciono la opcion OS1

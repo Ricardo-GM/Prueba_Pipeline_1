@@ -6,7 +6,6 @@ import io.cucumber.java.Before;
 import io.cucumber.java.ParameterType;
 import io.cucumber.java.Scenario;
 import net.serenitybdd.core.Serenity;
-import net.serenitybdd.core.SerenityReports;
 import net.serenitybdd.core.environment.ConfiguredEnvironment;
 import net.serenitybdd.screenplay.Ability;
 import net.serenitybdd.screenplay.Actor;
@@ -17,14 +16,8 @@ import net.thucydides.core.webdriver.WebDriverFacade;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import net.serenitybdd.core.Serenity;
 
 public class Hooks extends ConfiguredEnvironment {
     public static WebDriver driver;

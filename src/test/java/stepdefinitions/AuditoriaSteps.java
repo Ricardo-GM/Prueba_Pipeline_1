@@ -1,6 +1,7 @@
 package stepdefinitions;
 
 import actions.Base.Click;
+import actions.Base.ScrollTo;
 import actions.Base.WaitUntil;
 import exceptions.ExceptionHandler;
 import io.cucumber.java.en.And;
@@ -198,5 +199,24 @@ public class AuditoriaSteps {
     }
 
 
-
+    @And("{actor} selecciona idioma spanish en la aplicacion Navigator")
+    public void userSeleccionaIdiomaSpanishEnLaAplicacionNavigator(Actor actor) throws Exception {
+        try {
+            actor.attemptsTo(
+                    Click.On(ConsoleHomePage.getProfileButtonlocator()),
+                    Click.On(ConsoleHomePage.getPreferenciasUsuarioButtonLocator()),
+                    Click.On(ConsoleHomePage.getIdiomaAplicacionLocator()),
+                    ScrollTo.element(ConsoleHomePage.getIdiomaAplicacionEspañolLocator()),
+                    Click.On(ConsoleHomePage.getIdiomaAplicacionEspañolLocator()),
+                    /*
+                    Click.On(ConsoleHomePage.getEntornoLocalAplicacionLocator()),
+                    ScrollTo.element(ConsoleHomePage.getIdiomaEspañolEntornoLocalAplicacionLocator()),
+                    Click.On(ConsoleHomePage.getIdiomaEspañolEntornoLocalAplicacionLocator()),
+                    */
+                    Click.On(ConsoleHomePage.getGuardarPreferenciasUsuarioLocator())
+            );
+        }catch (Throwable e){
+            ExceptionHandler.Error(e);
+        }
+    }
 }
