@@ -40,13 +40,13 @@ stages:
             javaHomeOption: 'JDKVersion'
             mavenVersionOption: 'Default'
             mavenAuthenticateFeed: false
-        - task: Bash@3
-          displayName: 'Agregar permisos de ejecución a Chromedriver'
-          inputs:
-            targetType: 'inline'
-            script: |
-              cd src/test/resources/webdriver/linux/
-              chmod +x chromedriver
+        #- task: Bash@3
+        #  displayName: 'Agregar permisos de ejecución a Chromedriver'
+        #  inputs:
+        #    targetType: 'inline'
+        #    script: |
+        #      cd src/test/resources/webdriver/linux/
+        #      chmod +x chromedriver
 
         - task: Maven@3
           displayName: Maven clean verify
